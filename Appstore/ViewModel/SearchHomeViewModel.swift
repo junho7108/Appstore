@@ -15,7 +15,7 @@ final class SearchHomeViewModel: ViewModelType {
     }
     
     struct Output {
-        
+        let response: PublishRelay<SearchResponse>
     }
     
     struct Coordinate: DefaultCoordinate {
@@ -30,8 +30,24 @@ final class SearchHomeViewModel: ViewModelType {
     
     var disposeBag: DisposeBag = DisposeBag()
     
+    let useacse: SearchUsecase
+    
+    init(usecase: SearchUsecase) {
+        self.useacse = usecase
+    }
+    
     func transform(_ input: Input) -> Output {
         
-        return Output()
+        let response = PublishRelay<SearchResponse>()
+        
+//        input.fetchData
+//            .withUnretained(self)
+//            .flatMap { (self, _) in self.useacse.searchSoftware(term: "kakao")}
+//            .filter { $0 != nil }
+//            .map { $0! }
+//            .bind(to: response)
+//            .disposed(by: disposeBag)
+        
+        return Output(response: response)
     }
 }

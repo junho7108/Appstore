@@ -20,7 +20,7 @@ protocol CoordinatorForwardable {
     var currentScene: ForwardScene { get set }
     var lastScene: ForwardScene { get set }
     
-    func corodinate<T>(to coordinator: ReactiveCoordinator<T>,
+    func coordinate<T>(to coordinator: ReactiveCoordinator<T>,
                        type: CoordinatorTransitionType,
                        animated: Bool) -> Observable<T>
 }

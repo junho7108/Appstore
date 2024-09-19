@@ -29,6 +29,15 @@
 		12C9039C2C9C452D003F113E /* ViewModelBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9039B2C9C452D003F113E /* ViewModelBindable.swift */; };
 		12C9039E2C9C45FF003F113E /* SearchHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9039D2C9C45FF003F113E /* SearchHomeViewController.swift */; };
 		12C903A02C9C4620003F113E /* SearchHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9039F2C9C4620003F113E /* SearchHomeViewModel.swift */; };
+		12C903A82C9C4D88003F113E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903A72C9C4D88003F113E /* NetworkService.swift */; };
+		12C903AA2C9C4DB3003F113E /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903A92C9C4DB3003F113E /* EventMonitor.swift */; };
+		12C903AD2C9C4E5C003F113E /* NetworkService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903AC2C9C4E5C003F113E /* NetworkService+Rx.swift */; };
+		12C903B32C9C4F27003F113E /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903B22C9C4F27003F113E /* SearchUsecase.swift */; };
+		12C903B52C9C4F30003F113E /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903B42C9C4F30003F113E /* SearchRepository.swift */; };
+		12C903BD2C9C782D003F113E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903BC2C9C782D003F113E /* BaseViewController.swift */; };
+		12C903BF2C9C7A73003F113E /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903BE2C9C7A73003F113E /* SearchResultViewController.swift */; };
+		12C903C22C9C7F5A003F113E /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903C12C9C7F5A003F113E /* Const.swift */; };
+		12C903C42C9C8075003F113E /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903C32C9C8075003F113E /* SearchResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +59,15 @@
 		12C9039B2C9C452D003F113E /* ViewModelBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindable.swift; sourceTree = "<group>"; };
 		12C9039D2C9C45FF003F113E /* SearchHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHomeViewController.swift; sourceTree = "<group>"; };
 		12C9039F2C9C4620003F113E /* SearchHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHomeViewModel.swift; sourceTree = "<group>"; };
+		12C903A72C9C4D88003F113E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		12C903A92C9C4DB3003F113E /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		12C903AC2C9C4E5C003F113E /* NetworkService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Rx.swift"; sourceTree = "<group>"; };
+		12C903B22C9C4F27003F113E /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
+		12C903B42C9C4F30003F113E /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		12C903BC2C9C782D003F113E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		12C903BE2C9C7A73003F113E /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		12C903C12C9C7F5A003F113E /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		12C903C32C9C8075003F113E /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +106,11 @@
 		12C9034D2C9C380C003F113E /* Appstore */ = {
 			isa = PBXGroup;
 			children = (
+				12C903C02C9C7F52003F113E /* Common */,
+				12C903AE2C9C4F11003F113E /* Repository */,
+				12C903B12C9C4F1D003F113E /* Usecase */,
+				12C903AB2C9C4E4F003F113E /* Extensions */,
+				12C903A32C9C4D49003F113E /* Service */,
 				12C903762C9C3A92003F113E /* Model */,
 				12C903742C9C3A8A003F113E /* ViewModel */,
 				12C903752C9C3A8F003F113E /* ViewController */,
@@ -114,7 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				12C9039A2C9C4520003F113E /* Protocol */,
+				12C903BC2C9C782D003F113E /* BaseViewController.swift */,
 				12C9039D2C9C45FF003F113E /* SearchHomeViewController.swift */,
+				12C903BE2C9C7A73003F113E /* SearchResultViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -122,6 +147,7 @@
 		12C903762C9C3A92003F113E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				12C903C32C9C8075003F113E /* SearchResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,6 +189,55 @@
 				12C9039B2C9C452D003F113E /* ViewModelBindable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		12C903A32C9C4D49003F113E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				12C903A62C9C4D7A003F113E /* Network */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		12C903A62C9C4D7A003F113E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				12C903A72C9C4D88003F113E /* NetworkService.swift */,
+				12C903A92C9C4DB3003F113E /* EventMonitor.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		12C903AB2C9C4E4F003F113E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				12C903AC2C9C4E5C003F113E /* NetworkService+Rx.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		12C903AE2C9C4F11003F113E /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				12C903B42C9C4F30003F113E /* SearchRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		12C903B12C9C4F1D003F113E /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				12C903B22C9C4F27003F113E /* SearchUsecase.swift */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		12C903C02C9C7F52003F113E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				12C903C12C9C7F5A003F113E /* Const.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,17 +327,26 @@
 				12C903952C9C4348003F113E /* AppCoordinator.swift in Sources */,
 				12C9037F2C9C3AF5003F113E /* InputOutputAttachable.swift in Sources */,
 				12C903922C9C41DD003F113E /* ReactiveCoordinator.swift in Sources */,
+				12C903BD2C9C782D003F113E /* BaseViewController.swift in Sources */,
 				12C9039E2C9C45FF003F113E /* SearchHomeViewController.swift in Sources */,
 				12C903902C9C412D003F113E /* BaseCoordinator.swift in Sources */,
 				12C9038A2C9C3D4A003F113E /* CoordinatorForwardable.swift in Sources */,
 				12C903832C9C3B90003F113E /* ViewModelType.swift in Sources */,
+				12C903AA2C9C4DB3003F113E /* EventMonitor.swift in Sources */,
 				12C9038C2C9C3DB0003F113E /* CoordinatorTransitable.swift in Sources */,
 				12C9034F2C9C380C003F113E /* AppDelegate.swift in Sources */,
 				12C903992C9C4500003F113E /* SearchHomeCoordinator.swift in Sources */,
+				12C903B32C9C4F27003F113E /* SearchUsecase.swift in Sources */,
+				12C903AD2C9C4E5C003F113E /* NetworkService+Rx.swift in Sources */,
+				12C903A82C9C4D88003F113E /* NetworkService.swift in Sources */,
 				12C903A02C9C4620003F113E /* SearchHomeViewModel.swift in Sources */,
 				12C903812C9C3B27003F113E /* ViewModelCoordinatable.swift in Sources */,
 				12C903512C9C380C003F113E /* SceneDelegate.swift in Sources */,
 				12C9039C2C9C452D003F113E /* ViewModelBindable.swift in Sources */,
+				12C903BF2C9C7A73003F113E /* SearchResultViewController.swift in Sources */,
+				12C903B52C9C4F30003F113E /* SearchRepository.swift in Sources */,
+				12C903C42C9C8075003F113E /* SearchResponse.swift in Sources */,
+				12C903C22C9C7F5A003F113E /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
