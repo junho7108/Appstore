@@ -34,7 +34,7 @@ class ReactiveCoordinator<ResultType>: BaseCoordinator,
         fatalError("start() method must be implemented")
     }
     
-    func corodinate<T>(to coordinator: ReactiveCoordinator<T>, 
+    func coordinate<T>(to coordinator: ReactiveCoordinator<T>, 
                        type: CoordinatorTransitionType,
                        animated: Bool) -> Observable<T> {
         self.store(coordinator: coordinator)
