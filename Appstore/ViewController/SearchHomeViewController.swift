@@ -8,55 +8,90 @@
 import UIKit
 import RxSwift
 import RxRelay
-import RxCocoa
 
 final class SearchHomeViewController: BaseViewController,
-                                      ViewModelBindable {
-    
+                                      ViewModelBindable,
+                                      CollectionViewDiffableProtocol {
+  
     typealias ViewModelType = SearchHomeViewModel
     
     var viewModel: SearchHomeViewModel!
     
     var disposeBag: DisposeBag = DisposeBag()
     
-    private let searchResultViewController = SearchResultViewController()
-   
+    var items: [[any ModelAdaptable]]?
     
+    lazy var handler: CollectionViewDiffableHandler! = .init(adaptable: self,
+                                                             collecionView: collectionView)
+    
+    private lazy var searchResultViewController = SearchResultViewController(viewModel: viewModel)
+   
+    private lazy var searchController = UISearchController(searchResultsController: searchResultViewController)
+    
+    var collectionView: UICollectionView! = UICollectionView(frame: .zero,
+                                                             collectionViewLayout: .init())
+
     func bindViewModel() {
         
-        viewModel.output.response
-            .bind { response in
-                print("🟢 response \(response)")
+        viewModel.output.recentKeywords
+            .withUnretained(self)
+            .bind { (self, recentKeywords) in
+                guard !recentKeywords.isEmpty else { return }
+                let items = recentKeywords.map { [$0.toCellModel()] }
+                self.handler.updateDataSource(items)
             }
             .disposed(by: disposeBag)
     }
     
     override func configureUI() {
         super.configureUI()
-        configureSearchConttoller()
+        defer {
+            configureCollectionView()
+            configureSearchConttoller()
+        }
+       
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
     private func configureSearchConttoller() {
-        let searchController = UISearchController(searchResultsController: searchResultViewController)
+       
         searchController.searchBar.placeholder = "게임, 앱, 스토리 등"
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
-        
-    
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        searchController.searchBar.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+      
         self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.title = "검색"
+    }
+    
+    private func configureCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: UIScreen.width, height: 32)
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 16
         
+        collectionView.setCollectionViewLayout(layout, animated: false)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        
+        self.collectionView.register(cellWithClass: RecentKeywordCell.self)
     }
 }
 
 extension SearchHomeViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("\(#function)")
+        guard let keyword = searchBar.text, !keyword.isEmpty else { return }
+        viewModel.input.searchButtonClicked.accept(SearchKeyword(keyword: keyword))
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print("\(#function)")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.input.didChangeKeywordText.accept(searchText)
     }
 }

@@ -12,6 +12,7 @@ final class SearchHomeCoordinator: ReactiveCoordinator<Void>,
                                    CoordinatorTransitable {
     
     override func start(_ type: CoordinatorTransitionType) -> Observable<Void> {
+        
         self.navigationController.setNavigationBarHidden(false, animated: false)
         
         let repository = SearchRepository()

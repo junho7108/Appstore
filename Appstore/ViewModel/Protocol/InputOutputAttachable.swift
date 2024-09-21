@@ -20,3 +20,7 @@ protocol InputOutputAttachable {
 protocol DefaultInput {
     var fetchData: PublishRelay<Void> { get set }
 }
+
+protocol SearchHomeInput: DefaultInput {
+    var fetchSearchResult: PublishRelay<String> { get set }
+}

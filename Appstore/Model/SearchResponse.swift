@@ -12,10 +12,12 @@ struct SearchResponse: Codable {
     let results: [SearchResult]
 }
 
-struct SearchResult: Codable {
+struct SearchResult: Codable, Hashable {
     let supportedDevices: [String]
     let screenshotUrls: [String]
     let minimumOsVersion: String
+    
+    let artworkUrl100: String
     
     let artistId: Int
     let artistName: String

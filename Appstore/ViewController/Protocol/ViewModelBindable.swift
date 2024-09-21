@@ -32,6 +32,7 @@ extension ViewModelBindable where Self: UIViewController {
         if let vm = self.viewModel as? (any InputOutputAttachable),
            let input = vm.input as? any DefaultInput,
            shouldFetchData == true {
+            loadViewIfNeeded()
             input.fetchData.accept(())
         }
     }

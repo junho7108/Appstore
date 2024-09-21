@@ -9,20 +9,32 @@ import RxSwift
 import RxRelay
 
 final class SearchHomeViewModel: ViewModelType {
+    
+    typealias SectionType = SearchResultViewController.SearchResultSectionType
    
-    struct Input: DefaultInput {
+    struct Input: SearchHomeInput {
         var fetchData: PublishRelay<Void>
+        var fetchSearchResult: PublishRelay<String>
+        var didChangeKeywordText: BehaviorRelay<String>
+        let searchButtonClicked: PublishRelay<SearchKeyword>
     }
     
     struct Output {
         let response: PublishRelay<SearchResponse>
+        let recentKeywords: BehaviorRelay<[SearchKeyword]>
+        let relatedKeywords: BehaviorRelay<[SearchKeyword]>
+        let searchResults: BehaviorRelay<[SearchResult]>
+        let sectionType: BehaviorRelay<SectionType>
     }
     
     struct Coordinate: DefaultCoordinate {
         var close: PublishRelay<Void>
     }
     
-    var input: Input = Input(fetchData: PublishRelay<Void>())
+    var input: Input = Input(fetchData: PublishRelay<Void>(),
+                             fetchSearchResult: PublishRelay<String>(),
+                             didChangeKeywordText: BehaviorRelay<String>(value: ""),
+                             searchButtonClicked: PublishRelay<SearchKeyword>())
     
     lazy var output: Output = transform(input)
     
@@ -39,15 +51,48 @@ final class SearchHomeViewModel: ViewModelType {
     func transform(_ input: Input) -> Output {
         
         let response = PublishRelay<SearchResponse>()
+        let recentKeywords = BehaviorRelay<[SearchKeyword]>(value: [])
+        let relatedKeywords = BehaviorRelay<[SearchKeyword]>(value: [])
+        let searchResults = BehaviorRelay<[SearchResult]>(value: [])
+                                                          
+        let sectionType = BehaviorRelay<SectionType>(value: .relatedKeywords)
+      
         
-//        input.fetchData
-//            .withUnretained(self)
-//            .flatMap { (self, _) in self.useacse.searchSoftware(term: "kakao")}
-//            .filter { $0 != nil }
-//            .map { $0! }
-//            .bind(to: response)
-//            .disposed(by: disposeBag)
+        input.fetchData
+            .withUnretained(self)
+            .flatMap { (self, _) in self.useacse.fetcRecentSearchKeywords() }
+            .bind(to: recentKeywords)
+            .disposed(by: disposeBag)
         
-        return Output(response: response)
+        input.didChangeKeywordText
+            .filter { !$0.isEmpty }
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .flatMapLatest { (self, term) in self.useacse.searchSoftware(term: term) }
+            .bind(onNext: { response in
+                guard let response else { return }
+               
+                relatedKeywords.accept(response.results.map { SearchKeyword(keyword: $0.trackName )})
+                
+                searchResults.accept(response.results)
+              
+                sectionType.accept(.relatedKeywords)
+            })
+            .disposed(by: disposeBag)
+    
+        input.searchButtonClicked.share()
+            .withUnretained(self)
+            .bind { (self, keyword) in
+                self.useacse.saveSearchKeyword(keyword: keyword)
+                self.input.fetchData.accept(())
+                sectionType.accept(.searchResult)
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(response: response,
+                      recentKeywords: recentKeywords,
+                      relatedKeywords: relatedKeywords,
+                      searchResults: searchResults,
+                      sectionType: sectionType)
     }
 }
