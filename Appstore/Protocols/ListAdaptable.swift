@@ -9,9 +9,4 @@ import Foundation
 
 protocol ListAdaptable: AnyObject {
     var items: [[ModelAdaptable]]? { get }
-    
-}
-
-extension ListAdaptable {
-    
 }

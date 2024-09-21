@@ -10,8 +10,10 @@ import RxRelay
 
 final class SearchHomeViewModel: ViewModelType {
     
-    typealias SectionType = SearchResultViewController.SearchResultSectionType
-   
+    enum ScreenType {
+        case relatedKeywords, searchResult
+    }
+    
     struct Input: SearchHomeInput {
         var fetchData: PublishRelay<Void>
         var fetchSearchResult: PublishRelay<String>
@@ -24,7 +26,7 @@ final class SearchHomeViewModel: ViewModelType {
         let recentKeywords: BehaviorRelay<[SearchKeyword]>
         let relatedKeywords: BehaviorRelay<[SearchKeyword]>
         let searchResults: BehaviorRelay<[SearchResult]>
-        let sectionType: BehaviorRelay<SectionType>
+        let sectionType: BehaviorRelay<ScreenType>
     }
     
     struct Coordinate: DefaultCoordinate {
@@ -55,7 +57,7 @@ final class SearchHomeViewModel: ViewModelType {
         let relatedKeywords = BehaviorRelay<[SearchKeyword]>(value: [])
         let searchResults = BehaviorRelay<[SearchResult]>(value: [])
                                                           
-        let sectionType = BehaviorRelay<SectionType>(value: .relatedKeywords)
+        let sectionType = BehaviorRelay<ScreenType>(value: .relatedKeywords)
       
         
         input.fetchData
@@ -66,7 +68,7 @@ final class SearchHomeViewModel: ViewModelType {
         
         input.didChangeKeywordText
             .filter { !$0.isEmpty }
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .flatMapLatest { (self, term) in self.useacse.searchSoftware(term: term) }
             .bind(onNext: { response in

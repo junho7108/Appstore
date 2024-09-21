@@ -9,41 +9,26 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class RecentKeywordCell: BaseCell<SearchKeyword> {
-    var keywordLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        return label
-    }()
+class RecentKeywordCell: BaseCell<SearchKeyword>,
+                         ConfigurableUI {
+   
+    var baseView: RecentKeywordCellContentView = RecentKeywordCellContentView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        configureBaseView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureUI() {
-        contentView.addSubview(keywordLabel)
-        keywordLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(8)
-            make.center.equalToSuperview()
-            make.height.equalTo(20)
-        }
-    
-        let separator = UIView()
-        separator.backgroundColor = .lightGray
-        
-        contentView.addSubview(separator)
-        separator.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(1)
-        }
+    override func measuredSize(model: SearchKeyword?, indexPath: IndexPath) -> CGSize {
+        print("🟢\(#function)")
+        return CGSize(width: UIScreen.width, height: 40)
     }
-    
+
     override func update(model: SearchKeyword) {
-        self.keywordLabel.text = model.keyword
+        baseView.keywordLabel.text = model.keyword
     }
 }

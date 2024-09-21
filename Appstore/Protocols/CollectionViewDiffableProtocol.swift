@@ -18,24 +18,29 @@ public class CollectionViewDiffableHandler: NSObject {
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, CellModel>!
    
-    private var collectionView: UICollectionView
+    var collectionView: UICollectionView
     
     weak var adaptable: CollectionViewDiffableAdaptable?
     
     init(adaptable: CollectionViewDiffableAdaptable, collecionView: UICollectionView) {
         self.adaptable = adaptable
         self.collectionView = collecionView
+        self.adaptable?.collectionView = collecionView
         
         super.init()
+    
+        registerCells()
+        configureDataSource()
         
         self.collectionView.delegate = self
-        self.configureDataSource()
     }
+    
+    func registerCells() { }
 }
 
 extension CollectionViewDiffableHandler {
     private func configureDataSource() {
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: self.collectionView,
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: adaptable!.collectionView,
                                                              cellProvider: {
             [weak self] (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
         
@@ -79,7 +84,7 @@ extension CollectionViewDiffableHandler {
         self.dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    func updateDataSource(_ models: [[ModelAdaptable]]?, animatingDifferences: Bool = true) {
+    func updateDataSource(_ models: [[ModelAdaptable]]?, animatingDifferences: Bool = false) {
         guard let models = models as? [[CellModel]] else { return }
         
         let snapshot = self.createSnapshotItems(models)
@@ -88,18 +93,33 @@ extension CollectionViewDiffableHandler {
     }
 }
 
-//MARK: -
-extension CollectionViewDiffableHandler: UICollectionViewDelegate {
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension CollectionViewDiffableHandler: UICollectionViewDelegateFlowLayout {
+
+    public func collectionView(_ collectionView: UICollectionView,
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
     
+    public func collectionView(_ collectionView: UICollectionView,
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+       return 4
+    }
     
-    
-//    public func collectionView(_ collectionView: UICollectionView, 
-//                               layout collectionViewLayout: UICollectionViewLayout,
-//                               sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        guard let item = getItem(indexPath) else { return .zero }
-//        
-//        let size = adaptable.s
-//    }
+    public func collectionView(_ collectionView: UICollectionView,
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let item = getItem(indexPath) else { return .zero }
+        
+        let size = self.adaptable?.sizeOfCell(indexPath, itemModel: item) ?? .zero
+        
+        return size
+    }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.adaptable?.didSelectCell(indexPath)

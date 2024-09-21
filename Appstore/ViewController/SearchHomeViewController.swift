@@ -21,21 +21,22 @@ final class SearchHomeViewController: BaseViewController,
     
     var items: [[any ModelAdaptable]]?
     
-    lazy var handler: CollectionViewDiffableHandler! = .init(adaptable: self,
-                                                             collecionView: collectionView)
-    
     private lazy var searchResultViewController = SearchResultViewController(viewModel: viewModel)
    
     private lazy var searchController = UISearchController(searchResultsController: searchResultViewController)
     
+    lazy var handler: CollectionViewDiffableHandler! = CollectionViewDiffableHandler(adaptable: self,
+                                                                                     collecionView: collectionView)
+    
     var collectionView: UICollectionView! = UICollectionView(frame: .zero,
-                                                             collectionViewLayout: .init())
+                                                             collectionViewLayout: BaseCollectionFlowLayout(direction: .vertical))
 
     func bindViewModel() {
         
         viewModel.output.recentKeywords
             .withUnretained(self)
             .bind { (self, recentKeywords) in
+                print("🟢 최근 검색어 \(recentKeywords)")
                 guard !recentKeywords.isEmpty else { return }
                 let items = recentKeywords.map { [$0.toCellModel()] }
                 self.handler.updateDataSource(items)
@@ -46,7 +47,7 @@ final class SearchHomeViewController: BaseViewController,
     override func configureUI() {
         super.configureUI()
         defer {
-            configureCollectionView()
+            registerCells()
             configureSearchConttoller()
         }
        
@@ -65,16 +66,8 @@ final class SearchHomeViewController: BaseViewController,
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.title = "검색"
     }
-    
-    private func configureCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.width, height: 32)
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 16
-        
-        collectionView.setCollectionViewLayout(layout, animated: false)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        
+  
+    private func registerCells() {
         self.collectionView.register(cellWithClass: RecentKeywordCell.self)
     }
 }

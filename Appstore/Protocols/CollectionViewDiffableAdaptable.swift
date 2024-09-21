@@ -9,7 +9,7 @@ import UIKit
 
 protocol CollectionViewDiffableAdaptable: ListAdaptable {
     
-    var collectionView: UICollectionView! { get }
+    var collectionView: UICollectionView! { get set }
     
     func getCell(_ indexPath: IndexPath, itemModel: ModelAdaptable) -> UICollectionViewCell
 }
@@ -30,6 +30,22 @@ extension CollectionViewDiffableAdaptable {
         
         return cell
     }
+    
+    func sizeOfCell(_ indexPath: IndexPath, itemModel: ModelAdaptable) -> CGSize {
+        
+      
+        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: itemModel.identifier,
+                                                                            for: indexPath)
+        
+        if let adapatCell = cell as? CollectionViewCellAdaptable {
+            
+            return adapatCell.adaptComputedSize(model: itemModel.model, indexPath: indexPath)
+            
+        } else {
+            return .zero
+        }
+    }
+    
     
     func didSelectCell(_ indexPath: IndexPath) {
         

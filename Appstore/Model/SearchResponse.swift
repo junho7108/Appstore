@@ -31,4 +31,11 @@ struct SearchResult: Codable, Hashable {
     let currentVersionReleaseDate: String
     let bundleId: String
     let trackName: String
+    
+    let averageUserRating: Double
+    let userRatingCount: Int
+}
+
+extension SearchResult: CellModelConvertible {
+    typealias classType = SearchResultCell
 }

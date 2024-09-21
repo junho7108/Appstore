@@ -13,6 +13,8 @@ protocol CollectionViewCellAdaptable: UICollectionViewCell {
     func adaptOnUpdate()
     
     func adaptDidSelect(_ indexPath: IndexPath)
+    
+    func adaptComputedSize(model: Decodable, indexPath: IndexPath) -> CGSize
 }
 
 
