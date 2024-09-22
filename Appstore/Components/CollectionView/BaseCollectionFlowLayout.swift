@@ -14,14 +14,16 @@ class BaseCollectionFlowLayout: UICollectionViewFlowLayout {
         super.init()
     }
     
-    init(direction: Direction, sectionInset: UIEdgeInsets = .zero, lineSpacing: CGFloat = 8, itemSpacing: CGFloat = 8) {
+    init(direction: UICollectionView.ScrollDirection,
+         sectionInset: UIEdgeInsets = .zero,
+         lineSpacing: CGFloat = 8,
+         itemSpacing: CGFloat = 8) {
         super.init()
         
-        self.scrollDirection = direction == .horizontal ? .horizontal :.vertical
+        self.scrollDirection = direction
         self.sectionInset = sectionInset
         self.minimumInteritemSpacing = itemSpacing
         self.minimumLineSpacing = lineSpacing
-        
     }
 
     required init?(coder: NSCoder) {

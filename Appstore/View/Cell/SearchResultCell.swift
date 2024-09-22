@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchResultCell: BaseCell<SearchResult>,
+final class SearchResultCell: BaseCell<SearchResult>,
                         ConfigurableUI {
     
    
@@ -37,6 +37,6 @@ class SearchResultCell: BaseCell<SearchResult>,
     }
     
     override func didSelect(model: SearchResult, indexPath: IndexPath) {
-        print("🟢 \(model.trackName) didSelect")
+        
     }
 }

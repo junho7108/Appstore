@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct SearchKeyword: Codable, Hashable {
+struct RecentSearchKeyword: SearchKeywordType {
     var keyword: String
 }
 
-extension SearchKeyword: CellModelConvertible {
+extension RecentSearchKeyword: CellModelConvertible {
     typealias classType = RecentKeywordCell
 }

@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ScreenshotView: UIView {
+final class ScreenshotView: UIView {
     
     private let firstScreenImageView: UIImageView = {
         let imageView = UIImageView()

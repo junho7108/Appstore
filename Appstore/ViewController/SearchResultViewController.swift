@@ -11,6 +11,7 @@ import RxSwift
 
 final class SearchResultViewController: BaseViewController,
                                         ViewModelBindable,
+                                        ViewModelStatusChangeListener,
                                         CollectionViewDiffableProtocol {
    
     typealias ViewModelType = SearchHomeViewModel
@@ -28,22 +29,46 @@ final class SearchResultViewController: BaseViewController,
     var collectionView: UICollectionView! = UICollectionView(frame: .zero,
                                                              collectionViewLayout: BaseCollectionFlowLayout(direction: .vertical))
    
+    override func configure() {
+        registerCells()
+        attachViewModelStatusChangeObserver()
+    }
+    
     override func configureUI() {
         super.configureUI()
-        defer {
-            registerCells()
-        }
-        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
+    func decorateCell(_ cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        switch cell {
+        case is RelatedKeywordCell:
+            let cell = cell as! RelatedKeywordCell
+            
+            cell.completableAction = { [weak self] action in
+                switch action {
+                case .didSelectKeyword(let keyword):
+                    print("🟢 didSelectKeyword \(keyword)")
+                    self?.viewModel.input.searchKeyword.accept(keyword)
+                }
+            }
+            
+        case is SearchResultCell:
+            let cell = cell as! SearchResultCell
+            
+            
+        default:
+            return
+        }
+    }
+    
     func bindViewModel() {
         viewModel.output.sectionType
+            .share()
             .skip(1)
             .withUnretained(self)
             .bind { (self, section) in
-                print("🔴 section \(section)")
+                print("🔴 searchResultVC \(section)")
                 
                 switch section {
                 case .relatedKeywords:
@@ -59,9 +84,8 @@ final class SearchResultViewController: BaseViewController,
             .disposed(by: disposeBag)
     }
 
-
     func registerCells() {
-        collectionView.register(cellWithClass: RecentKeywordCell.self)
+        collectionView.register(cellWithClass: RelatedKeywordCell.self)
         collectionView.register(cellWithClass: SearchResultCell.self)
     }
 }

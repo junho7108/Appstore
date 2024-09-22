@@ -9,9 +9,15 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class RecentKeywordCell: BaseCell<SearchKeyword>,
-                         ConfigurableUI {
+final class RecentKeywordCell: BaseCell<RecentSearchKeyword>,
+                         ConfigurableUI,
+                         ActionAttachable {
+    
+    enum ActionType {
+        case didSelectKeyword(keyword: RecentSearchKeyword)
+    }
    
+    var completableAction: ((ActionType) -> Void)?
     var baseView: RecentKeywordCellContentView = RecentKeywordCellContentView()
     
     override init(frame: CGRect) {
@@ -23,12 +29,15 @@ class RecentKeywordCell: BaseCell<SearchKeyword>,
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func measuredSize(model: SearchKeyword?, indexPath: IndexPath) -> CGSize {
-        print("🟢\(#function)")
-        return CGSize(width: UIScreen.width, height: 40)
+    override func measuredSize(model: RecentSearchKeyword?, indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.width - 32, height: 40)
     }
 
-    override func update(model: SearchKeyword) {
+    override func update(model: RecentSearchKeyword) {
         baseView.keywordLabel.text = model.keyword
+    }
+    
+    override func didSelect(model: RecentSearchKeyword, indexPath: IndexPath) {
+        completableAction?(.didSelectKeyword(keyword: model))
     }
 }

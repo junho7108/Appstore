@@ -15,11 +15,11 @@ struct SearchUsecase {
         self.repository = repository
     }
     
-    func saveSearchKeyword(keyword: SearchKeyword) {
+    func saveSearchKeyword(keyword: any SearchKeywordType) {
         return self.repository.saveSearchKeyword(keyword: keyword)
     }
     
-    func fetcRecentSearchKeywords() -> Observable<[SearchKeyword]> {
+    func fetcRecentSearchKeywords() -> Observable<[RecentSearchKeyword]> {
         return self.repository.fetcRecentSearchKeywords()
     }
     

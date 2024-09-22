@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class StarScoreView: UIView {
+final class StarScoreView: UIView {
     
     private let starImage = UIImage(systemName: "star")?
         .withRenderingMode(.alwaysOriginal)

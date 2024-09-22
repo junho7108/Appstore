@@ -99,19 +99,6 @@ extension CollectionViewDiffableHandler: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
-                               insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout,
-                               minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
-       return 4
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         guard let item = getItem(indexPath) else { return .zero }

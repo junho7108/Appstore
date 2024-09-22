@@ -12,6 +12,8 @@ protocol CollectionViewDiffableAdaptable: ListAdaptable {
     var collectionView: UICollectionView! { get set }
     
     func getCell(_ indexPath: IndexPath, itemModel: ModelAdaptable) -> UICollectionViewCell
+    
+    func decorateCell(_ cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
 }
 
 extension CollectionViewDiffableAdaptable {
@@ -27,6 +29,8 @@ extension CollectionViewDiffableAdaptable {
             
             adaptCell.adaptOnUpdate()
         }
+        
+        decorateCell(cell, forItemAt: indexPath)
         
         return cell
     }

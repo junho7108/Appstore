@@ -10,30 +10,28 @@ import Alamofire
 import RxSwift
 
 protocol SearchRepositoryType {
-    func saveSearchKeyword(keyword: SearchKeyword)
-    func fetcRecentSearchKeywords() -> Observable<[SearchKeyword]>
+    func saveSearchKeyword<T: SearchKeywordType>(keyword: T)
+    func fetcRecentSearchKeywords() -> Observable<[RecentSearchKeyword]>
     func searchSoftware(term: String, country: String, entity: MediaType) -> Observable<SearchResponse?>
 }
 
 struct SearchRepository: SearchRepositoryType {
-    func saveSearchKeyword(keyword: SearchKeyword) {
-        var searchKeywords = UserDefaults.standard.object([SearchKeyword].self,
+    func saveSearchKeyword<T: SearchKeywordType>(keyword: T) {
+        var searchKeywords = UserDefaults.standard.object([T].self,
                                                           forKey: "searchKeywords")
-        
-        // 중복된 키워드가 있는 경우 제거
         if let index = searchKeywords?.firstIndex(of: keyword) {
             searchKeywords?.remove(at: index)
         }
         
-        let result: [SearchKeyword] = [keyword] + (searchKeywords ?? [])
+        let result: [T] = [keyword] + (searchKeywords ?? [])
         
         UserDefaults.standard.set(object: result, forKey: "searchKeywords")
     }
     
-    func fetcRecentSearchKeywords() -> Observable<[SearchKeyword]> {
+    func fetcRecentSearchKeywords() -> Observable<[RecentSearchKeyword]> {
         return Observable.create { emitter in
             
-            let keywords = UserDefaults.standard.object([SearchKeyword].self, forKey: "searchKeywords")
+            let keywords = UserDefaults.standard.object([RecentSearchKeyword].self, forKey: "searchKeywords")
             
             emitter.onNext(keywords ?? [])
             

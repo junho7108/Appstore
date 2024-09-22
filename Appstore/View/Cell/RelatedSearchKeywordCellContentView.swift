@@ -1,5 +1,5 @@
 //
-//  RecentKeywordCellContentView.swift
+//  RelatedSearchKeywordCellContentView.swift
 //  Appstore
 //
 //  Created by Junho Yoon on 9/22/24.
@@ -7,11 +7,20 @@
 
 import UIKit
 
-final class RecentKeywordCellContentView: UIView {
+final class RelatedSearchKeywordCellContentView: UIView {
+    
+    private(set) var matchedKeywordImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")?
+            .withRenderingMode(.alwaysOriginal)
+            .withTintColor(.systemGray3))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     private(set) var keywordLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .label
         return label
     }()
     
@@ -25,10 +34,18 @@ final class RecentKeywordCellContentView: UIView {
     }
     
     func configureUI() {
+        
+        addSubview(matchedKeywordImageView)
+        matchedKeywordImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(8)
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(16)
+        }
+        
         addSubview(keywordLabel)
         keywordLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(8)
-            make.center.equalToSuperview()
+            make.leading.equalTo(matchedKeywordImageView.snp.trailing).offset(16)
+            make.centerY.equalToSuperview()
             make.height.equalTo(20)
         }
     

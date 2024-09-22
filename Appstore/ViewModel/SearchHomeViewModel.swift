@@ -8,23 +8,26 @@
 import RxSwift
 import RxRelay
 
-final class SearchHomeViewModel: ViewModelType {
+final class SearchHomeViewModel: ViewModelType,
+                                 ViewModelStatusObservable {
     
     enum ScreenType {
         case relatedKeywords, searchResult
     }
     
-    struct Input: SearchHomeInput {
+    struct Input: DefaultInput {
         var fetchData: PublishRelay<Void>
-        var fetchSearchResult: PublishRelay<String>
         var didChangeKeywordText: BehaviorRelay<String>
-        let searchButtonClicked: PublishRelay<SearchKeyword>
+        let searchKeyword: PublishRelay<any SearchKeywordType>
+//        let searchButtonClicked: PublishRelay<any SearchKeywordType>
     }
     
     struct Output {
+        let isLoading: BehaviorRelay<Bool>
+        let searchText: PublishRelay<String>
         let response: PublishRelay<SearchResponse>
-        let recentKeywords: BehaviorRelay<[SearchKeyword]>
-        let relatedKeywords: BehaviorRelay<[SearchKeyword]>
+        let recentKeywords: BehaviorRelay<[RecentSearchKeyword]>
+        let relatedKeywords: BehaviorRelay<[RelatedSearchKeyword]>
         let searchResults: BehaviorRelay<[SearchResult]>
         let sectionType: BehaviorRelay<ScreenType>
     }
@@ -34,9 +37,8 @@ final class SearchHomeViewModel: ViewModelType {
     }
     
     var input: Input = Input(fetchData: PublishRelay<Void>(),
-                             fetchSearchResult: PublishRelay<String>(),
                              didChangeKeywordText: BehaviorRelay<String>(value: ""),
-                             searchButtonClicked: PublishRelay<SearchKeyword>())
+                             searchKeyword: PublishRelay<any SearchKeywordType>())
     
     lazy var output: Output = transform(input)
     
@@ -46,15 +48,19 @@ final class SearchHomeViewModel: ViewModelType {
     
     let useacse: SearchUsecase
     
+    var status: BehaviorRelay<ViewModelStatus> = .init(value: .ready)
+    
     init(usecase: SearchUsecase) {
         self.useacse = usecase
     }
     
     func transform(_ input: Input) -> Output {
         
+        let isLoading = BehaviorRelay<Bool>(value: false)
+        let searchText = PublishRelay<String>()
         let response = PublishRelay<SearchResponse>()
-        let recentKeywords = BehaviorRelay<[SearchKeyword]>(value: [])
-        let relatedKeywords = BehaviorRelay<[SearchKeyword]>(value: [])
+        let recentKeywords = BehaviorRelay<[RecentSearchKeyword]>(value: [])
+        let relatedKeywords = BehaviorRelay<[RelatedSearchKeyword]>(value: [])
         let searchResults = BehaviorRelay<[SearchResult]>(value: [])
                                                           
         let sectionType = BehaviorRelay<ScreenType>(value: .relatedKeywords)
@@ -65,36 +71,58 @@ final class SearchHomeViewModel: ViewModelType {
             .flatMap { (self, _) in self.useacse.fetcRecentSearchKeywords() }
             .bind(to: recentKeywords)
             .disposed(by: disposeBag)
-        
+    
         input.didChangeKeywordText
             .filter { !$0.isEmpty }
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .withUnretained(self)
-            .flatMapLatest { (self, term) in self.useacse.searchSoftware(term: term) }
+            .flatMapLatest { (self, term) in self.searchSoftware(term: term) }
             .bind(onNext: { response in
                 guard let response else { return }
                
-                relatedKeywords.accept(response.results.map { SearchKeyword(keyword: $0.trackName )})
+                let keywords = response.results.map { RelatedSearchKeyword(keyword: $0.trackName)}
                 
-                searchResults.accept(response.results)
-              
+                relatedKeywords.accept(keywords)
+                
                 sectionType.accept(.relatedKeywords)
             })
             .disposed(by: disposeBag)
-    
-        input.searchButtonClicked.share()
+        
+        input.searchKeyword
+            .share()
             .withUnretained(self)
-            .bind { (self, keyword) in
+            .do(onNext: { (self, keyword) in
                 self.useacse.saveSearchKeyword(keyword: keyword)
                 self.input.fetchData.accept(())
+                searchText.accept(keyword.keyword)
+            })
+            .flatMapLatest { (self, keyword) in self.searchSoftware(term: keyword.keyword )}
+            .bind { response in
+                guard let response else { return }
+          
+                searchResults.accept(response.results)
+                
                 sectionType.accept(.searchResult)
             }
             .disposed(by: disposeBag)
         
-        return Output(response: response,
+        return Output(isLoading: isLoading,
+                      searchText: searchText,
+                      response: response,
                       recentKeywords: recentKeywords,
                       relatedKeywords: relatedKeywords,
                       searchResults: searchResults,
                       sectionType: sectionType)
+    }
+}
+
+private extension SearchHomeViewModel {
+    func searchSoftware(term: String) -> Observable<SearchResponse?>  {
+        self.status.accept(.loading)
+        
+        return self.useacse.searchSoftware(term: term)
+            .do(onNext: { [weak self] _ in
+                self?.status.accept(.complete)
+            })
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SearchResultCellContentView: UIView {
+final class SearchResultCellContentView: UIView {
     
     private(set) var imageView: UIImageView = {
         let imageView = UIImageView()
