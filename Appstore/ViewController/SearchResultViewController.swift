@@ -99,7 +99,6 @@ final class SearchResultViewController: BaseViewController,
                     
                 case .searchResult:
                     self.searchControler?.searchBar.resignFirstResponder()
-
                     let items = self.viewModel.output.searchResults.value.map { $0.toCellModel()}
                     self.handler.updateDataSource([items])
                     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResponse: Codable {
+struct SearchResponse: Codable, Hashable {
     let resultCount: Int
     let results: [SearchResult]
 }
@@ -38,4 +38,24 @@ struct SearchResult: Codable, Hashable {
 
 extension SearchResult: CellModelConvertible {
     typealias classType = SearchResultCell
+}
+
+extension SearchResult {
+    static func testObject(trackName: String) -> SearchResult {
+        return SearchResult(supportedDevices: [],
+                            screenshotUrls: [],
+                            minimumOsVersion: "",
+                            artworkUrl100: "",
+                            artistId: 0,
+                            artistName: "",
+                            genres: [],
+                            description: "",
+                            releaseNotes: "",
+                            price: nil,
+                            currentVersionReleaseDate: "",
+                            bundleId: "",
+                            trackName: trackName,
+                            averageUserRating: 0,
+                            userRatingCount: 0)
+    }
 }
