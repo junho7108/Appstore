@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ConfigurableUI where Self: UIView {
+protocol ConfigurableUI: AnyObject {
     associatedtype BaseView: UIView
     
     var baseView: BaseView { get set }
@@ -15,10 +15,17 @@ protocol ConfigurableUI where Self: UIView {
     func configureBaseView()
 }
 
-extension ConfigurableUI {
+extension ConfigurableUI where Self: UIView {
     func configureBaseView() {
         addSubview(baseView)
         baseView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    }
+}
+
+extension ConfigurableUI where Self: UIViewController {
+    func configureBaseView() {
+        view.addSubview(baseView)
+        baseView.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide) }
     }
 }
 

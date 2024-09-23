@@ -85,11 +85,11 @@ final class StarScoreView: UIView {
     func updateScore(_ score: Double) {
         
         arrangedSubviews.enumerated().forEach { (index, _) in
-            let starScore = Double(index) + 0.5 // 현재 인덱스에 0.5를 더한 값
+            let starScore = Double(index) + 0.5
             
             if score >= starScore {
                 arrangedSubviews[index].image = fillStarImage
-            } else if score >= Double(index) {
+            } else if score >= Double(index) && score != 0 {
                 arrangedSubviews[index].image = halffilledStarImage
             } else {
                 arrangedSubviews[index].image = starImage

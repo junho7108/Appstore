@@ -24,7 +24,7 @@ final class SearchHomeViewController: BaseViewController,
     
     private lazy var searchResultViewController = SearchResultViewController(viewModel: viewModel)
    
-    private lazy var searchController = UISearchController(searchResultsController: searchResultViewController)
+    private(set) lazy var searchController = UISearchController(searchResultsController: searchResultViewController)
     
     lazy var handler: CollectionViewDiffableHandler! = CollectionViewDiffableHandler(adaptable: self,
                                                                                      collecionView: collectionView)
@@ -62,7 +62,9 @@ final class SearchHomeViewController: BaseViewController,
             .withUnretained(self)
             .bind { (self, recentKeywords) in
                 guard !recentKeywords.isEmpty else { return }
-                let items = recentKeywords.map { [$0.toCellModel()] }
+                var items: [[CellModel]] = []
+                items.append([RecentKeywordTitleCellModel(title: "최근 검색어").toCellModel()])
+                items.append(recentKeywords.map { $0.toCellModel() })
                 self.handler.updateDataSource(items)
             }
             .disposed(by: disposeBag)
@@ -76,7 +78,7 @@ final class SearchHomeViewController: BaseViewController,
     }
     
     override func configure() {
-        registerCells()
+        searchResultViewController.searchControler = searchController
         configureSearchConttoller()
         attachViewModelStatusChangeObserver()
     }
@@ -91,10 +93,6 @@ final class SearchHomeViewController: BaseViewController,
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.title = "검색"
-    }
-  
-    private func registerCells() {
-        self.collectionView.register(cellWithClass: RecentKeywordCell.self)
     }
 }
 

@@ -55,9 +55,7 @@ final class ScreenshotView: UIView {
         
         arrangedSubViews.forEach { $0.snp.makeConstraints { make in
             let width = (UIScreen.width - 24 - 12) / 3
-            let height = width * 7 / 3
             make.width.equalTo(width)
-            make.height.equalTo(height)
         }}
         
         addSubview(stackView)

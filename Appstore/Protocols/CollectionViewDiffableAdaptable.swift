@@ -37,7 +37,6 @@ extension CollectionViewDiffableAdaptable {
     
     func sizeOfCell(_ indexPath: IndexPath, itemModel: ModelAdaptable) -> CGSize {
         
-      
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: itemModel.identifier,
                                                                             for: indexPath)
         

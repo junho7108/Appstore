@@ -8,8 +8,14 @@
 import UIKit
 
 final class SearchResultCell: BaseCell<SearchResult>,
-                        ConfigurableUI {
+                              ConfigurableUI,
+                              ActionAttachable {
     
+    enum ActionType {
+        case coordinateToSearchDetail(SearchResult)
+    }
+    
+    var completableAction: ((ActionType) -> Void)?
    
     var baseView: SearchResultCellContentView = SearchResultCellContentView()
     
@@ -37,6 +43,6 @@ final class SearchResultCell: BaseCell<SearchResult>,
     }
     
     override func didSelect(model: SearchResult, indexPath: IndexPath) {
-        
+        completableAction?(.coordinateToSearchDetail(model))
     }
 }

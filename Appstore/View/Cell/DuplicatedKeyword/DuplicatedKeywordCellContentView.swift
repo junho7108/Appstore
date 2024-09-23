@@ -1,16 +1,16 @@
 //
-//  RelatedSearchKeywordCellContentView.swift
+//  DuplicatedKeywordCellContentView.swift
 //  Appstore
 //
-//  Created by Junho Yoon on 9/22/24.
+//  Created by Junho Yoon on 9/23/24.
 //
 
 import UIKit
 
-final class RelatedSearchKeywordCellContentView: UIView {
+final class DuplicatedKeywordCellContentView: UIView {
     
     private(set) var matchedKeywordImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")?
+        let imageView = UIImageView(image: UIImage(systemName: "timer")?
             .withRenderingMode(.alwaysOriginal)
             .withTintColor(.systemGray3))
         imageView.contentMode = .scaleAspectFit
@@ -19,7 +19,7 @@ final class RelatedSearchKeywordCellContentView: UIView {
     
     private(set) var keywordLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = .label
         return label
     }()
@@ -49,11 +49,11 @@ final class RelatedSearchKeywordCellContentView: UIView {
             make.height.equalTo(20)
         }
     
-        let separator = UIView()
-        separator.backgroundColor = .systemGray5
+        let devider = UIView()
+        devider.backgroundColor = .systemGray5
         
-        addSubview(separator)
-        separator.snp.makeConstraints { make in
+        addSubview(devider)
+        devider.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
         }

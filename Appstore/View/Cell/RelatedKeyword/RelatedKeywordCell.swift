@@ -9,12 +9,17 @@ import Foundation
 import UIKit
 import Kingfisher
 
+struct RelatedSearchKeyword: SearchKeywordType, CellModelProtocol {
+    var keyword: String
+    typealias classType = RelatedKeywordCell
+}
+
 final class RelatedKeywordCell: BaseCell<RelatedSearchKeyword>,
                           ConfigurableUI,
                           ActionAttachable {
     
     enum ActionType {
-        case didSelectKeyword(keyword: RelatedSearchKeyword)
+        case didSelectKeyword(keyword: any SearchKeywordType)
     }
     
     var completableAction: ((ActionType) -> Void)?

@@ -28,7 +28,9 @@ extension BaseCell: CollectionViewCellAdaptable {
     }
     
     func adaptOnUpdate() {
-        guard let model else { return }
+        guard let model else {
+            fatalError()
+        }
         
         self.update(model: model)
     }

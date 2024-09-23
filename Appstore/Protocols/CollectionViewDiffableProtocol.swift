@@ -25,8 +25,7 @@ public class CollectionViewDiffableHandler: NSObject {
     init(adaptable: CollectionViewDiffableAdaptable, collecionView: UICollectionView) {
         self.adaptable = adaptable
         self.collectionView = collecionView
-        self.adaptable?.collectionView = collecionView
-        
+
         super.init()
     
         registerCells()
@@ -35,28 +34,42 @@ public class CollectionViewDiffableHandler: NSObject {
         self.collectionView.delegate = self
     }
     
-    func registerCells() { }
+    func registerCells() { 
+        collectionView.register(cellWithClass: RecentKeywordTitleCell.self)
+        collectionView.register(cellWithClass: RecentKeywordCell.self)
+        
+        collectionView.register(cellWithClass: RelatedKeywordCell.self)
+        collectionView.register(cellWithClass: DuplicatedKeywordCell.self)
+        
+        collectionView.register(cellWithClass: SearchResultCell.self)
+        collectionView.register(cellWithClass: AppInfoCell.self)
+        collectionView.register(cellWithClass: AnalyticsCell.self)
+        collectionView.register(cellWithClass: ScreenshotListCell.self)
+        collectionView.register(cellWithClass: ScreenshotCell.self)
+        collectionView.register(cellWithClass: DescriptionCell.self)
+    }
 }
 
 extension CollectionViewDiffableHandler {
     private func configureDataSource() {
+        
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: adaptable!.collectionView,
                                                              cellProvider: {
             [weak self] (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
-        
-            guard let self, let cell = self.adaptable?.getCell(indexPath, itemModel: itemIdentifier) else { return nil }
-         
+            
+            guard let self,
+                  let cell = self.adaptable?.getCell(indexPath, itemModel: itemIdentifier) else { return nil }
+
             return cell
         })
     }
     
     private func createSnapshotItems(_ models: [[CellModel]]) -> SnapshotType {
-        
         var snapshot = SnapshotType()
         
         for (index, items) in models.enumerated() {
             snapshot.appendSections([index])
-            snapshot.appendItems(items)
+            snapshot.appendItems(items, toSection: index)
         }
         
         return snapshot
@@ -76,19 +89,11 @@ extension CollectionViewDiffableHandler {
         return items[indexPath.item]
     }
     
-    func initDataSource(_ models: [[ModelAdaptable]]?) {
-        guard let models = models as? [[CellModel]] else { return }
-        
-        let snapshot = self.createSnapshotItems(models)
-        
-        self.dataSource.apply(snapshot, animatingDifferences: false)
-    }
-    
     func updateDataSource(_ models: [[ModelAdaptable]]?, animatingDifferences: Bool = false) {
         guard let models = models as? [[CellModel]] else { return }
         
         let snapshot = self.createSnapshotItems(models)
-        
+  
         self.dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }

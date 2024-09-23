@@ -22,11 +22,11 @@ struct SearchResult: Codable, Hashable {
     let artistId: Int
     let artistName: String
     let genres: [String]
-    
-    let price: Double
-    
+
     let description: String
-    let releaseNotes: String
+    
+    let releaseNotes: String?
+    let price: Double?
     
     let currentVersionReleaseDate: String
     let bundleId: String

@@ -9,6 +9,11 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+struct RecentSearchKeyword: SearchKeywordType, CellModelProtocol {
+    var keyword: String
+    typealias classType = RecentKeywordCell
+}
+
 final class RecentKeywordCell: BaseCell<RecentSearchKeyword>,
                          ConfigurableUI,
                          ActionAttachable {

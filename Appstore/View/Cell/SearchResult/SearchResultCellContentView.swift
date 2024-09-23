@@ -15,6 +15,8 @@ final class SearchResultCellContentView: UIView {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 16
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.systemGray4.cgColor
         return imageView
     }()
     
@@ -106,7 +108,7 @@ final class SearchResultCellContentView: UIView {
         screenShotView.snp.makeConstraints { make in
             make.top.equalTo(starScoreView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(12)
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(16)
         }
     }
 }

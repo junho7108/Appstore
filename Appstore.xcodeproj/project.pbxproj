@@ -40,7 +40,6 @@
 		12C903C42C9C8075003F113E /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903C32C9C8075003F113E /* SearchResponse.swift */; };
 		12C903C62C9D294A003F113E /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903C52C9D294A003F113E /* MediaType.swift */; };
 		12C903D02C9D9DCE003F113E /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903CF2C9D9DCE003F113E /* CollectionView+Extensions.swift */; };
-		12C903D22C9DA97D003F113E /* RecentSearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903D12C9DA97D003F113E /* RecentSearchKeyword.swift */; };
 		12C903D62C9DAA2F003F113E /* RecentKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903D52C9DAA2F003F113E /* RecentKeywordCell.swift */; };
 		12C903D82C9DB49E003F113E /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903D72C9DB49E003F113E /* UIScreen+Extensions.swift */; };
 		12C903DC2C9DCB0D003F113E /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C903DB2C9DCB0D003F113E /* UserDefaults+Extensions.swift */; };
@@ -61,12 +60,26 @@
 		12C904062C9F2CE2003F113E /* ConfigurableUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904052C9F2CE2003F113E /* ConfigurableUI.swift */; };
 		12C904082C9F2D0E003F113E /* RecentKeywordCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904072C9F2D0E003F113E /* RecentKeywordCellContentView.swift */; };
 		12C9040A2C9F2DFE003F113E /* SearchResultCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904092C9F2DFE003F113E /* SearchResultCellContentView.swift */; };
-		12C9040C2C9F3265003F113E /* RelatedSearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9040B2C9F3265003F113E /* RelatedSearchKeyword.swift */; };
 		12C9040E2C9F3285003F113E /* RelatedSearchKeywordCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9040D2C9F3285003F113E /* RelatedSearchKeywordCellContentView.swift */; };
 		12C904102C9F338A003F113E /* RelatedKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9040F2C9F338A003F113E /* RelatedKeywordCell.swift */; };
 		12C904122CA012AE003F113E /* ActionAttachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904112CA012AE003F113E /* ActionAttachable.swift */; };
 		12C904142CA0150F003F113E /* SearchKeywordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904132CA0150F003F113E /* SearchKeywordType.swift */; };
 		12C904162CA02941003F113E /* ViewModelStatusObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904152CA02941003F113E /* ViewModelStatusObservable.swift */; };
+		12C904182CA0339A003F113E /* SearchResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904172CA0339A003F113E /* SearchResultDetailViewController.swift */; };
+		12C9041C2CA0564C003F113E /* SearchResultDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9041B2CA0564C003F113E /* SearchResultDetailCoordinator.swift */; };
+		12C9041E2CA0566C003F113E /* SearchResultDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9041D2CA0566C003F113E /* SearchResultDetailViewModel.swift */; };
+		12C904242CA060B8003F113E /* AppInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904232CA060B8003F113E /* AppInfoCell.swift */; };
+		12C904262CA060E5003F113E /* AppInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904252CA060E5003F113E /* AppInfoContentView.swift */; };
+		12C904282CA06261003F113E /* ScreenshotListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904272CA06261003F113E /* ScreenshotListCell.swift */; };
+		12C904312CA0695E003F113E /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904302CA0695E003F113E /* ScreenshotCell.swift */; };
+		12C904372CA07C5C003F113E /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904362CA07C5C003F113E /* DescriptionCell.swift */; };
+		12C904392CA084CC003F113E /* CellModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904382CA084CC003F113E /* CellModelProtocol.swift */; };
+		12C9043B2CA09D9A003F113E /* AnalyticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9043A2CA09D9A003F113E /* AnalyticsCell.swift */; };
+		12C9043D2CA0A1EE003F113E /* AnalyticsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9043C2CA0A1EE003F113E /* AnalyticsContentView.swift */; };
+		12C9043F2CA0A695003F113E /* StarScoreAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9043E2CA0A695003F113E /* StarScoreAnalyticsView.swift */; };
+		12C904412CA13A06003F113E /* RecentKeywordTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904402CA13A06003F113E /* RecentKeywordTitleCell.swift */; };
+		12C904442CA141FA003F113E /* DuplicatedKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904432CA141FA003F113E /* DuplicatedKeywordCell.swift */; };
+		12C904462CA14289003F113E /* DuplicatedKeywordCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C904452CA14289003F113E /* DuplicatedKeywordCellContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,7 +112,6 @@
 		12C903C32C9C8075003F113E /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		12C903C52C9D294A003F113E /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		12C903CF2C9D9DCE003F113E /* CollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extensions.swift"; sourceTree = "<group>"; };
-		12C903D12C9DA97D003F113E /* RecentSearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchKeyword.swift; sourceTree = "<group>"; };
 		12C903D52C9DAA2F003F113E /* RecentKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentKeywordCell.swift; sourceTree = "<group>"; };
 		12C903D72C9DB49E003F113E /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		12C903DB2C9DCB0D003F113E /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
@@ -120,12 +132,26 @@
 		12C904052C9F2CE2003F113E /* ConfigurableUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableUI.swift; sourceTree = "<group>"; };
 		12C904072C9F2D0E003F113E /* RecentKeywordCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentKeywordCellContentView.swift; sourceTree = "<group>"; };
 		12C904092C9F2DFE003F113E /* SearchResultCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCellContentView.swift; sourceTree = "<group>"; };
-		12C9040B2C9F3265003F113E /* RelatedSearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedSearchKeyword.swift; sourceTree = "<group>"; };
 		12C9040D2C9F3285003F113E /* RelatedSearchKeywordCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedSearchKeywordCellContentView.swift; sourceTree = "<group>"; };
 		12C9040F2C9F338A003F113E /* RelatedKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedKeywordCell.swift; sourceTree = "<group>"; };
 		12C904112CA012AE003F113E /* ActionAttachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionAttachable.swift; sourceTree = "<group>"; };
 		12C904132CA0150F003F113E /* SearchKeywordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordType.swift; sourceTree = "<group>"; };
 		12C904152CA02941003F113E /* ViewModelStatusObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelStatusObservable.swift; sourceTree = "<group>"; };
+		12C904172CA0339A003F113E /* SearchResultDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewController.swift; sourceTree = "<group>"; };
+		12C9041B2CA0564C003F113E /* SearchResultDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetailCoordinator.swift; sourceTree = "<group>"; };
+		12C9041D2CA0566C003F113E /* SearchResultDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewModel.swift; sourceTree = "<group>"; };
+		12C904232CA060B8003F113E /* AppInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCell.swift; sourceTree = "<group>"; };
+		12C904252CA060E5003F113E /* AppInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoContentView.swift; sourceTree = "<group>"; };
+		12C904272CA06261003F113E /* ScreenshotListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotListCell.swift; sourceTree = "<group>"; };
+		12C904302CA0695E003F113E /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
+		12C904362CA07C5C003F113E /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		12C904382CA084CC003F113E /* CellModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModelProtocol.swift; sourceTree = "<group>"; };
+		12C9043A2CA09D9A003F113E /* AnalyticsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCell.swift; sourceTree = "<group>"; };
+		12C9043C2CA0A1EE003F113E /* AnalyticsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsContentView.swift; sourceTree = "<group>"; };
+		12C9043E2CA0A695003F113E /* StarScoreAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarScoreAnalyticsView.swift; sourceTree = "<group>"; };
+		12C904402CA13A06003F113E /* RecentKeywordTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentKeywordTitleCell.swift; sourceTree = "<group>"; };
+		12C904432CA141FA003F113E /* DuplicatedKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicatedKeywordCell.swift; sourceTree = "<group>"; };
+		12C904452CA14289003F113E /* DuplicatedKeywordCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicatedKeywordCellContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +216,7 @@
 			children = (
 				12C903772C9C3AA3003F113E /* Protocol */,
 				12C9039F2C9C4620003F113E /* SearchHomeViewModel.swift */,
+				12C9041D2CA0566C003F113E /* SearchResultDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -201,6 +228,7 @@
 				12C903BC2C9C782D003F113E /* BaseViewController.swift */,
 				12C9039D2C9C45FF003F113E /* SearchHomeViewController.swift */,
 				12C903BE2C9C7A73003F113E /* SearchResultViewController.swift */,
+				12C904172CA0339A003F113E /* SearchResultDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -211,8 +239,7 @@
 				12C903C32C9C8075003F113E /* SearchResponse.swift */,
 				12C903C52C9D294A003F113E /* MediaType.swift */,
 				12C904132CA0150F003F113E /* SearchKeywordType.swift */,
-				12C903D12C9DA97D003F113E /* RecentSearchKeyword.swift */,
-				12C9040B2C9F3265003F113E /* RelatedSearchKeyword.swift */,
+				12C904382CA084CC003F113E /* CellModelProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,6 +263,7 @@
 				12C903912C9C41DD003F113E /* ReactiveCoordinator.swift */,
 				12C903942C9C4348003F113E /* AppCoordinator.swift */,
 				12C903982C9C4500003F113E /* SearchHomeCoordinator.swift */,
+				12C9041B2CA0564C003F113E /* SearchResultDetailCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -324,12 +352,11 @@
 		12C903D42C9DAA26003F113E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				12C904072C9F2D0E003F113E /* RecentKeywordCellContentView.swift */,
-				12C903D52C9DAA2F003F113E /* RecentKeywordCell.swift */,
-				12C9040D2C9F3285003F113E /* RelatedSearchKeywordCellContentView.swift */,
-				12C9040F2C9F338A003F113E /* RelatedKeywordCell.swift */,
-				12C904092C9F2DFE003F113E /* SearchResultCellContentView.swift */,
-				12C903E42C9E875F003F113E /* SearchResultCell.swift */,
+				12C904222CA060A5003F113E /* RecentKeyword */,
+				12C904212CA0609D003F113E /* RelatedKeyword */,
+				12C904422CA141E5003F113E /* DuplicatedKeyword */,
+				12C904202CA0608E003F113E /* SearchResult */,
+				12C9042A2CA06502003F113E /* SearchResultDetail */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -365,6 +392,90 @@
 				12C903E62C9EDD8F003F113E /* CollectionView */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		12C9041F2CA06088003F113E /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				12C904252CA060E5003F113E /* AppInfoContentView.swift */,
+				12C904232CA060B8003F113E /* AppInfoCell.swift */,
+			);
+			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		12C904202CA0608E003F113E /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				12C904092C9F2DFE003F113E /* SearchResultCellContentView.swift */,
+				12C903E42C9E875F003F113E /* SearchResultCell.swift */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		12C904212CA0609D003F113E /* RelatedKeyword */ = {
+			isa = PBXGroup;
+			children = (
+				12C9040D2C9F3285003F113E /* RelatedSearchKeywordCellContentView.swift */,
+				12C9040F2C9F338A003F113E /* RelatedKeywordCell.swift */,
+			);
+			path = RelatedKeyword;
+			sourceTree = "<group>";
+		};
+		12C904222CA060A5003F113E /* RecentKeyword */ = {
+			isa = PBXGroup;
+			children = (
+				12C904072C9F2D0E003F113E /* RecentKeywordCellContentView.swift */,
+				12C903D52C9DAA2F003F113E /* RecentKeywordCell.swift */,
+				12C904402CA13A06003F113E /* RecentKeywordTitleCell.swift */,
+			);
+			path = RecentKeyword;
+			sourceTree = "<group>";
+		};
+		12C904292CA064F2003F113E /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				12C904302CA0695E003F113E /* ScreenshotCell.swift */,
+				12C904272CA06261003F113E /* ScreenshotListCell.swift */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		12C9042A2CA06502003F113E /* SearchResultDetail */ = {
+			isa = PBXGroup;
+			children = (
+				12C9041F2CA06088003F113E /* AppInfo */,
+				12C904342CA07C3A003F113E /* Analytics */,
+				12C904292CA064F2003F113E /* Screenshots */,
+				12C904352CA07C4D003F113E /* Description */,
+			);
+			path = SearchResultDetail;
+			sourceTree = "<group>";
+		};
+		12C904342CA07C3A003F113E /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				12C9043A2CA09D9A003F113E /* AnalyticsCell.swift */,
+				12C9043C2CA0A1EE003F113E /* AnalyticsContentView.swift */,
+				12C9043E2CA0A695003F113E /* StarScoreAnalyticsView.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		12C904352CA07C4D003F113E /* Description */ = {
+			isa = PBXGroup;
+			children = (
+				12C904362CA07C5C003F113E /* DescriptionCell.swift */,
+			);
+			path = Description;
+			sourceTree = "<group>";
+		};
+		12C904422CA141E5003F113E /* DuplicatedKeyword */ = {
+			isa = PBXGroup;
+			children = (
+				12C904452CA14289003F113E /* DuplicatedKeywordCellContentView.swift */,
+				12C904432CA141FA003F113E /* DuplicatedKeywordCell.swift */,
+			);
+			path = DuplicatedKeyword;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,11 +562,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12C9041E2CA0566C003F113E /* SearchResultDetailViewModel.swift in Sources */,
 				12C903E82C9EDDA3003F113E /* CollectionViewDiffableProtocol.swift in Sources */,
 				12C903952C9C4348003F113E /* AppCoordinator.swift in Sources */,
 				12C904122CA012AE003F113E /* ActionAttachable.swift in Sources */,
 				12C9037F2C9C3AF5003F113E /* InputOutputAttachable.swift in Sources */,
+				12C9041C2CA0564C003F113E /* SearchResultDetailCoordinator.swift in Sources */,
+				12C9043B2CA09D9A003F113E /* AnalyticsCell.swift in Sources */,
 				12C903922C9C41DD003F113E /* ReactiveCoordinator.swift in Sources */,
+				12C9043F2CA0A695003F113E /* StarScoreAnalyticsView.swift in Sources */,
 				12C903BD2C9C782D003F113E /* BaseViewController.swift in Sources */,
 				12C903E52C9E875F003F113E /* SearchResultCell.swift in Sources */,
 				12C9039E2C9C45FF003F113E /* SearchHomeViewController.swift in Sources */,
@@ -463,24 +578,33 @@
 				12C903EA2C9EDDAB003F113E /* ListAdaptable.swift in Sources */,
 				12C9038A2C9C3D4A003F113E /* CoordinatorForwardable.swift in Sources */,
 				12C903832C9C3B90003F113E /* ViewModelType.swift in Sources */,
+				12C904312CA0695E003F113E /* ScreenshotCell.swift in Sources */,
 				12C903F02C9EDE95003F113E /* CollectionViewCellAdaptable.swift in Sources */,
 				12C903F42C9EE0D9003F113E /* String+Extensions.swift in Sources */,
 				12C903AA2C9C4DB3003F113E /* EventMonitor.swift in Sources */,
 				12C9038C2C9C3DB0003F113E /* CoordinatorTransitable.swift in Sources */,
 				12C9034F2C9C380C003F113E /* AppDelegate.swift in Sources */,
+				12C904262CA060E5003F113E /* AppInfoContentView.swift in Sources */,
+				12C904412CA13A06003F113E /* RecentKeywordTitleCell.swift in Sources */,
+				12C904282CA06261003F113E /* ScreenshotListCell.swift in Sources */,
 				12C903EE2C9EDE12003F113E /* CollectionViewDiffableAdaptable.swift in Sources */,
+				12C904442CA141FA003F113E /* DuplicatedKeywordCell.swift in Sources */,
 				12C904002C9F1EC5003F113E /* Double+Extensions.swift in Sources */,
 				12C904102C9F338A003F113E /* RelatedKeywordCell.swift in Sources */,
 				12C903992C9C4500003F113E /* SearchHomeCoordinator.swift in Sources */,
+				12C9043D2CA0A1EE003F113E /* AnalyticsContentView.swift in Sources */,
 				12C903C62C9D294A003F113E /* MediaType.swift in Sources */,
-				12C903D22C9DA97D003F113E /* RecentSearchKeyword.swift in Sources */,
+				12C904372CA07C5C003F113E /* DescriptionCell.swift in Sources */,
 				12C903B32C9C4F27003F113E /* SearchUsecase.swift in Sources */,
 				12C9040E2C9F3285003F113E /* RelatedSearchKeywordCellContentView.swift in Sources */,
 				12C903AD2C9C4E5C003F113E /* NetworkService+Rx.swift in Sources */,
 				12C904142CA0150F003F113E /* SearchKeywordType.swift in Sources */,
+				12C904392CA084CC003F113E /* CellModelProtocol.swift in Sources */,
 				12C903FA2C9F13D8003F113E /* BaseCollectionFlowLayout.swift in Sources */,
+				12C904182CA0339A003F113E /* SearchResultDetailViewController.swift in Sources */,
 				12C903DC2C9DCB0D003F113E /* UserDefaults+Extensions.swift in Sources */,
 				12C904022C9F2000003F113E /* StarScoreView.swift in Sources */,
+				12C904462CA14289003F113E /* DuplicatedKeywordCellContentView.swift in Sources */,
 				12C904042C9F25A6003F113E /* ScreenshotView.swift in Sources */,
 				12C903EC2C9EDDB9003F113E /* ModelAdaptable.swift in Sources */,
 				12C903F22C9EDFF9003F113E /* CellModel.swift in Sources */,
@@ -491,12 +615,12 @@
 				12C903A02C9C4620003F113E /* SearchHomeViewModel.swift in Sources */,
 				12C903812C9C3B27003F113E /* ViewModelCoordinatable.swift in Sources */,
 				12C904162CA02941003F113E /* ViewModelStatusObservable.swift in Sources */,
-				12C9040C2C9F3265003F113E /* RelatedSearchKeyword.swift in Sources */,
 				12C903512C9C380C003F113E /* SceneDelegate.swift in Sources */,
 				12C9039C2C9C452D003F113E /* ViewModelBindable.swift in Sources */,
 				12C9040A2C9F2DFE003F113E /* SearchResultCellContentView.swift in Sources */,
 				12C903F82C9EE645003F113E /* BaseCell.swift in Sources */,
 				12C903BF2C9C7A73003F113E /* SearchResultViewController.swift in Sources */,
+				12C904242CA060B8003F113E /* AppInfoCell.swift in Sources */,
 				12C903D62C9DAA2F003F113E /* RecentKeywordCell.swift in Sources */,
 				12C903D02C9D9DCE003F113E /* CollectionView+Extensions.swift in Sources */,
 				12C903B52C9C4F30003F113E /* SearchRepository.swift in Sources */,

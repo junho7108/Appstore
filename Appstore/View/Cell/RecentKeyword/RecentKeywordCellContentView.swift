@@ -32,11 +32,11 @@ final class RecentKeywordCellContentView: UIView {
             make.height.equalTo(20)
         }
     
-        let separator = UIView()
-        separator.backgroundColor = .systemGray5
+        let devider = UIView()
+        devider.backgroundColor = .systemGray5
         
-        addSubview(separator)
-        separator.snp.makeConstraints { make in
+        addSubview(devider)
+        devider.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
