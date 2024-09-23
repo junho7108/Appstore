@@ -15,7 +15,17 @@ struct SearchUsecase {
         self.repository = repository
     }
     
-    func searchSoftware(term: String, country: String = "KR") -> Observable<SearchResponse?> {
-        return self.repository.searchSoftware(term: term, country: country)
+    func saveSearchKeyword(keyword: any SearchKeywordType) {
+        return self.repository.saveSearchKeyword(keyword: keyword)
+    }
+    
+    func fetcRecentSearchKeywords() -> Observable<[RecentSearchKeyword]> {
+        return self.repository.fetcRecentSearchKeywords()
+    }
+    
+    func searchSoftware(term: String,
+                        country: String = "KR",
+                        entity: MediaType = .software) -> Observable<SearchResponse?> {
+        return self.repository.searchSoftware(term: term, country: country, entity: entity)
     }
 }
